@@ -5,8 +5,28 @@ import utilStyles from '../styles/utils.module.css'
 
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import { getPostsData } from '../lib/post'
 
-export default function Home() {
+// SSGの場合(外部からデータを一度だけ取得してくる)
+// MEMO: ↓決まった特有の書き方
+// MEMO: 外部から取得するデータが1つもないなら必要ない
+export async function getStaticProps() {
+  const allPostsData = getPostsData()
+  // 注意点
+  // 1. オブジェクトを返すようにする
+  // 2. "pages/*"からしかexport不可
+  // 3. コンポーネントとして定義不可
+  // 4. 開発環境ではリクエストがあるたびにgetStaticPropsが呼ばれる
+  return {
+    props: {
+      allPostsData,
+    },
+  }
+}
+
+export default function Home(props) {
+  const { allPostsData } = props
+  console.log({ allPostsData })
   return (
     <Layout>
       <section className={utilStyles.headingMd}>
