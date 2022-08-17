@@ -39,58 +39,18 @@ export default function Home(props) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>📝エンジニアのブログ</h2>
         <div className={`${styles.grid}`}>
-          <article>
-            <Link href={'/'}>
-              <img
-                src="/images/thumbnail01.jpg"
-                className={`${styles.thumbnailImage}`}
-              />
-            </Link>
-            <Link href={'/'}>
-              <a className={utilStyles.boldText}>title</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>2022, Febrary 20</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src="/images/thumbnail01.jpg"
-                className={`${styles.thumbnailImage}`}
-              />
-            </Link>
-            <Link href={'/'}>
-              <a className={utilStyles.boldText}>title</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>2022, Febrary 20</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src="/images/thumbnail01.jpg"
-                className={`${styles.thumbnailImage}`}
-              />
-            </Link>
-            <Link href={'/'}>
-              <a className={utilStyles.boldText}>title</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>2022, Febrary 20</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src="/images/thumbnail01.jpg"
-                className={`${styles.thumbnailImage}`}
-              />
-            </Link>
-            <Link href={'/'}>
-              <a className={utilStyles.boldText}>title</a>
-            </Link>
-            <br />
-            <small className={utilStyles.lightText}>2022, Febrary 20</small>
-          </article>
+          {allPostsData.map(({ id, title, date, thumbnail }) => (
+            <article key={id}>
+              <Link href={`/posts/${id}`}>
+                <img src={thumbnail} className={styles.thumbnailImage} />
+              </Link>
+              <Link href={`/posts/${id}`}>
+                <a className={utilStyles.boldText}>{title}</a>
+              </Link>
+              <br />
+              <small className={utilStyles.lightText}>{date}</small>
+            </article>
+          ))}
         </div>
       </section>
     </Layout>
