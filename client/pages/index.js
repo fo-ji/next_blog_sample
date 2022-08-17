@@ -24,6 +24,15 @@ export async function getStaticProps() {
   }
 }
 
+// // SSRの場合(外部からデータを頻繁に取得してくる)
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {
+//       // コンポーネントに渡すprops
+//     },
+//   }
+// }
+
 export default function Home(props) {
   const { allPostsData } = props
   console.log({ allPostsData })
