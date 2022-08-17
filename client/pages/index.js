@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+
 import styles from '../styles/Home.module.css'
 import utilStyles from '../styles/utils.module.css'
-
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout, { siteTitle } from '../components/Layout'
 import { getPostsData } from '../lib/post'
 
 // SSGの場合(外部からデータを一度だけ取得してくる)
@@ -37,7 +37,10 @@ export default function Home(props) {
   const { allPostsData } = props
   console.log({ allPostsData })
   return (
-    <Layout>
+    <Layout home>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
       <section className={utilStyles.headingMd}>
         <p>
           私はフルスタックエンジニアです/Udemy講師として活動しています/好きな言語はJavascriptです
